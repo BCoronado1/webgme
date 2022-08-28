@@ -1,0 +1,16 @@
+version: '3'
+services:
+  webgme_ui:
+    container_name: webgme_ui
+    build:
+      context: .
+      dockerfile: Dockerfile_webgme_ui
+    ports:
+      - "8888:8888"
+  webgme_db:
+    container_name: webgme_db
+    build:
+      context: .
+      dockerfile: Dockerfile_webgme_db
+    volumes:
+      - ./webgme_db:/opt/mongo/webgme_db

@@ -1,0 +1,3 @@
+FROM mongo:3.6.23
+RUN sed -i "s/bindIp: 127.0.0.1/bindIpAll: true/" /etc/mongod.conf.orig
+CMD mongod --dbpath /opt/mongo/webgme_db --config /etc/mongod.conf.orig

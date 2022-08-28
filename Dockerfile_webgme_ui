@@ -1,0 +1,9 @@
+FROM node:latest
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get -y update && apt-get -y install iproute2 net-tools software-properties-common
+RUN npm install -g webgme-cli
+RUN webgme init webgme_db
+WORKDIR /webgme_db
+RUN npm install
+RUN sed -i "s/mongodb:\/\/127.0.0.1:27017/mongodb:\/\/webgme_db:27017/" /webgme_db/config/config.webgme.js
+CMD sleep 5 && npm start
